@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startButton.classList.add('hidden');
         stopButton.classList.remove('hidden');
         currentTaskDiv.textContent = "Current Task: " + result.taskName;
-        pulseDiv?.classList.remove('hidden');
+        pulseDiv?.classList.remove('pulse-inactive');
         pulseDiv?.classList.add('pulse-active');
         disableButtons();
         stopButton.disabled = false;
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startButton.classList.add('hidden');
         stopButton.classList.remove('hidden');
         currentTaskDiv.textContent = "Current Task: " + taskName;
-        pulseDiv?.classList.remove('hidden');
+        pulseDiv?.classList.remove('pulse-inactive');
         pulseDiv?.classList.add('pulse-active');
         disableButtons();
         stopButton.disabled = false;
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         stopButton.classList.add('hidden');
         currentTaskDiv.textContent = "";
         pulseDiv?.classList.remove('pulse-active');
-        pulseDiv?.classList.add('hidden');
+        pulseDiv?.classList.add('pulse-inactive');
       
         chrome.storage.local.get(['startTime', 'taskName'], function(result) {
           let startTime = result.startTime;
