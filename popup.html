@@ -7,14 +7,15 @@
   <h1>Work Time Tracker</h1>
   <button id="start">Start</button>
   <button id="stop" disabled>Stop</button>
-  <label for="task">Task:</label>
-  <input type="text" id="task" name="task">
+  <div id="taskArea">
+    <label for="task">Task:</label>
+    <input type="text" id="task" name="task">
+    <div id="pulse" class="hidden"></div>
+  </div>
   <button id="download">Download data</button>
   <button id="markdown">Preview Markdown</button>
 
-  <div id="currentTask">
-    <div id="pulse" class="hidden"></div>
-  </div>
+  <div id="currentTask"></div>
 
   <div id="tasks"></div>
   <script src="popup.js"></script>

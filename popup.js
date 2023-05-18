@@ -2,6 +2,12 @@ let startTime = null;
 let stopTime = null;
 let taskName = null;
 
+// Check if the pulse-active class is added
+console.log(document.getElementById('pulse').classList.contains('pulse-active'));
+
+// This should log true when a task is active and false when no task is active.
+
+
 document.addEventListener('DOMContentLoaded', function() {
     chrome.storage.local.get(['startTime', 'taskName'], function(result) {
       const startButton = document.getElementById('start');
