@@ -2,12 +2,6 @@ let startTime = null;
 let stopTime = null;
 let taskName = null;
 
-// Check if the pulse-active class is added
-console.log(document.getElementById('pulse').classList.contains('pulse-active'));
-
-// This should log true when a task is active and false when no task is active.
-
-
 document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.local.get(['startTime', 'taskName'], function (result) {
         const startButton = document.getElementById('start');
@@ -73,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let startTime = result.startTime;
             let taskName = result.taskName;
 
-            let time = Math.round((stopTime - startTime) / 1000);
+            let time = Math.ceil((stopTime - startTime) / 60000); // Minutes rounded up
             let date = new Date(stopTime).toLocaleDateString();
             let startTimeFormatted = new Date(startTime).toLocaleTimeString();
             let stopTimeFormatted = new Date(stopTime).toLocaleTimeString();
@@ -99,12 +93,11 @@ document.addEventListener('DOMContentLoaded', function () {
         chrome.storage.local.remove(['startTime', 'taskName']);
     });
 
-
     document.getElementById('download').addEventListener('click', function () {
         chrome.storage.local.get('tasks', function (result) {
             let tasks = result.tasks || [];
             let csvContent = "data:text/csv;charset=utf-8,"
-                + "Task,Time,Date,Start Time,End Time\n"
+                + "Task,Time (Minutes),Date,Start Time,End Time\n"
                 + tasks.map(e => e.task + "," + e.time + "," + e.date + "," + e.startTime + "," + (e.endTime || 'Unknown')).join("\n");
             let encodedUri = encodeURI(csvContent);
             let link = document.createElement("a");
@@ -120,12 +113,12 @@ document.addEventListener('DOMContentLoaded', function () {
         chrome.storage.local.get('tasks', function (result) {
             let tasks = result.tasks || [];
             let markdownContent = "## Tasks\n\n"
-                + tasks.map(e => "- **Task:** " + e.task + "\n  - **Time:** " + e.time + " seconds\n  - **Date:** " + e.date + "\n  - **Start Time:** " + e.startTime + "\n  - **End Time:** " + (e.endTime || 'Unknown')).join("\n");
+                + tasks.map(e => "- **Task:** " + e.task + "\n  - **Time:** " + e.time + " minutes\n  - **Date:** " + e.date + "\n  - **Start Time:** " + e.startTime + "\n  - **End Time:** " + (e.endTime || 'Unknown')).join("\n");
             let markdownWindow = window.open("");
             markdownWindow.document.write("<pre>" + markdownContent + "</pre>");
         });
     });
-
+    
 
     function disableButtons() {
         document.getElementById('download').disabled = true;
@@ -144,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
         tasksDiv.innerHTML = '';
         tasks.forEach((task, index) => {
             let taskElement = document.createElement('p');
-            taskElement.innerHTML = `${task.task}: ${task.time} seconds on ${task.date} from ${task.startTime} to ${task.endTime} <button class="delete" data-index="${index}">Delete</button>`;
+            taskElement.innerHTML = `${task.task}: ${task.time} minutes on ${task.date} from ${task.startTime} to ${task.endTime} <button class="delete" data-index="${index}">Delete</button>`;
             tasksDiv.appendChild(taskElement);
         });
         let deleteButtons = document.getElementsByClassName('delete');
