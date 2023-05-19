@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" type="text/css" href="popup.css">
-</head>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="popup.css">
+  </head>
 <body>
   <div class="container">
-    <h1>Work Time Tracker</h1>
-    <div id="taskArea">
-      <button id="start">Start</button>
-      <button id="stop" disabled>Stop</button>
-      <label for="task">Task:</label>
-      <input type="text" id="task" name="task">
+    <h1 class="title">Work Time Tracker</h1>
+    <div id="taskArea" class="field is-grouped">
+      <p class="control">
+        <button class="button is-primary" id="start">Start</button>
+      </p>
+      <p class="control">
+        <button class="button is-primary" id="stop" disabled>Stop</button>
+      </p>
+      <p class="control">
+        <label class="label" for="task">Task:</label>
+        <input class="input" type="text" id="task" name="task">
+      </p>
       <div id="pulse" class="pulse-inactive"></div>
     </div>
-    <button id="download">Download data</button>
-    <button id="markdown">Preview Markdown</button>
-    <div id="currentTask"></div>
+    <button class="button is-primary" id="download">Download data</button>
+    <button class="button is-primary" id="markdown">Preview Markdown</button>
+    <div class="box" id="currentTask"></div>
     <div id="tasks"></div>
   </div>
+  
   <script src="popup.js"></script>
 </body>
 </html>

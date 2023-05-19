@@ -1,43 +1,37 @@
-* {
-    box-sizing: border-box;
-}
-
-
 body {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 300px;
+    width: 400px;
+    padding: 20px;
 }
 
 #taskArea {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     margin: 10px 0;
 }
 
 button {
-    margin: 10px;
+    margin: 5px 0;
+}
+
+.input {
+    margin-left: 10px;
+    width: 180px;
 }
 
 #currentTask {
+    margin: 10px 0;
     width: 100%;
-    padding: 10px;
-    background-color: #e8e8e8;
-    border: 1px solid #c0c0c0;
-    border-radius: 5px;
-    font-size: 14px;
-    color: #333;
     text-align: center;
 }
 
 #tasks {
     width: 100%;
-    margin-top: 20px;
 }
 
 #pulse {
@@ -49,13 +43,15 @@ button {
 }
 
 #pulse.pulse-active {
-	background-color: #90EE90; /* Light green */
-	animation: pulse 2s infinite;
+    background-color: #90EE90;
+    /* Light green */
+    animation: pulse 2s infinite;
 }
 
 #pulse.pulse-inactive {
-	background-color: #c1c1c1; /* Light green */
-	animation: pulse 2s infinite;
+    background-color: #c1c1c1;
+    /* Light green */
+    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
@@ -63,10 +59,12 @@ button {
         transform: scale(0.95);
         opacity: 0.7;
     }
+
     70% {
         transform: scale(1);
         opacity: 0.4;
     }
+
     100% {
         transform: scale(0.95);
         opacity: 0.7;
